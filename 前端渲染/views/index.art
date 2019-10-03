@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图书管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/www/lib/bootstrap-3.3.7.css">
+    <script type="text/javascript" src="/www/lib/jquery.js"></script>
+    <script type="text/javascript" src="/www/js/index.js"></script>
+</head>
+<body>
+    <div>图书管理系统<a href="/toAddBook">添加图书</a>|<a href="/toSearchBook">查询图书</a></div> 
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>作者</th>
+                <th>分类</th>
+                <th>简介</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{each list}}
+            <tr>
+                <td>{{$value.id}}</td>
+                <td>{{$value.name}}</td>
+                <td>{{$value.author}}</td>
+                <td>{{$value.category}}</td>
+                <td>{{$value.description}}</td>
+                <td>
+                   <a href="/toEditBook?id={{$value.id}}">修改</a>|
+                   <a href="/deleteBook?id={{$value.id}}">删除</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>    
+</body>
+</html>

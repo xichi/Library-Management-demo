@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>查询图书</title>
+</head>
+<body>
+    <div>查询图书</div>
+    <form action="/searchBook" method="get">
+        <input type="hidden" name="id" value="{{id}}">
+        名称：<input type="text" name="name" value="{{name}}"></br>
+        作者：<input type="text" name="author" value="{{author}}"></br>
+        分类：<input type="text" name="category" value="{{category}}"></br>
+        <input type="submit" value="提交">
+    </form>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>作者</th>
+                <th>分类</th>
+                <th>简介</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{each searchResults}}
+            <tr>
+                <td>{{$value.id}}</td>
+                <td>{{$value.name}}</td>
+                <td>{{$value.author}}</td>
+                <td>{{$value.category}}</td>
+                <td>{{$value.desc}}</td>
+                <td>
+                   <a href="/toEditBook?id={{$value.id}}">修改</a>|
+                   <a href="/deleteBook?id={{$value.id}}">删除</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>  
+</body>
+</html>
