@@ -1,19 +1,9 @@
 /* 
   业务模块
 */
-const data = require('./data.json');
 const path = require('path');
 const fs = require('fs');
 const db = require('./db.js');
-
-//自动生成图书编号
-let maxBookCode = ()=>{
-  let arr = [];
-  data.forEach((item)=>{
-      arr.push(item.id)
-  });
-  return Math.max.apply(null,arr)   //求arr中的id最大值
-}
 
 //渲染主页面
 exports.showIndex = (req,res)=>{
@@ -72,20 +62,32 @@ exports.toSearchBook = (req,res)=>{
   res.render('searchBook',{});
 }
 exports.searchBook = (req,res)=>{
-   let book = req.query;
-   let bookList = [];
-   let flag = 0;
-   data.forEach((item)=>{
-   for(let key in item){
-      if(book[key] == item[key]){
-        bookList.push(item);
-        flag = 1;
-        break;
-      }
-    }
-    if(flag){
-      return;
-    }   
-   })
-  res.render('searchBook',{searchResults: bookList});
+  let book = req.query;
+  let sql = 'select * from book where ';
+  let noneResults = '';
+  let data = [];
+  if(book.name != ''){
+    sql += 'name=?';
+    data.push(book.name);
+  }
+  else if(book.author != ''){
+    sql += 'author=?';
+    data.push(book.author);
+  }
+  else if(book.category != ''){
+    sql += 'category=?';
+    data.push(book.category);
+  }
+  else{
+    noneResults = '查询条件为空';
+    res.render('searchBook',{noneResults: noneResults});
+    return;
+  }
+  db.base(sql, data, (result)=>{
+      if(result.length != 0)   res.render('searchBook',{searchResults: result});
+      else{
+        noneResults = '暂无查询记录';
+        res.render('searchBook',{noneResults: noneResults});
+      }   
+  })
 } 

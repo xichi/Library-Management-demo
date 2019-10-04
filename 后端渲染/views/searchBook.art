@@ -23,6 +23,7 @@
                 <th>作者</th>
                 <th>分类</th>
                 <th>简介</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +33,7 @@
                 <td>{{$value.name}}</td>
                 <td>{{$value.author}}</td>
                 <td>{{$value.category}}</td>
-                <td>{{$value.desc}}</td>
+                <td>{{$value.description}}</td>
                 <td>
                    <a href="/toEditBook?id={{$value.id}}">修改</a>|
                    <a href="/deleteBook?id={{$value.id}}">删除</a>
@@ -41,5 +42,8 @@
             {{/each}}
         </tbody>
     </table>  
+    {{if noneResults}}
+       <p>{{@noneResults}}</p>
+    {{/if}}
 </body>
 </html>
