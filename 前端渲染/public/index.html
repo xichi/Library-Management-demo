@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图书管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/www/lib/bootstrap-3.3.7.css">
+    <script type="text/javascript" src="/www/lib/jquery.js"></script>
+    <script type="text/javascript" src="/www/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/www/lib/template-web.js"></script>
+    <script type="text/javascript" src="/www/js/index.js"></script>
+    <script type="text/template" id="indexTpl">
+        {{each list}}
+            <tr>
+                <td>{{$value.id}}</td>
+                <td>{{$value.name}}</td>
+                <td>{{$value.author}}</td>
+                <td>{{$value.category}}</td>
+                <td>{{$value.description}}</td>
+                <td>
+                   <a href="/toEditBook?id={{$value.id}}">修改</a>|
+                   <a href="/deleteBook?id={{$value.id}}">删除</a>
+                </td>
+            </tr>
+        {{/each}}
+    </script>
+</head>
+<body>
+    <div>图书管理系统
+        <button type="button" id="addBook" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">添加图书</button>       
+        <button type="button" id="searchBook" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">查询图书</button>
+    </div> 
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>作者</th>
+                <th>分类</th>
+                <th>简介</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="dataList">
+           
+        </tbody>
+    </table>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">添加图书</h4>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" id="form-save">
+                名称：<input type="text" name="name"></br>
+                作者：<input type="text" name="author"></br>
+                分类：<input type="text" name="category"></br>
+                描述：<input type="text" name="description"></br>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" id="btn-save" data-dismiss="modal">保存</button>
+        </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

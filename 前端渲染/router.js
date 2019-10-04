@@ -1,21 +1,29 @@
 /* 
-   路由模块
+   路由模块:
+   get      http://localhost:2100/books
+   get      http://localhost:2100/books/book
+   post     http://localhost:2100/books/book
+   get      http://localhost:2100/books/book/1
+   put      http://localhost:2100/books/book
+   delete   http://localhost:2100/books/book/1
 */
 
 const express = require('express');
 const router = express.Router();
 const service = require('./service.js');
 
-//渲染主页
-router.get('/',service.showIndex);
+//提供所有的图书信息
+router.get('/books',service.allBooks);
+//添加图书时提交数据
+router.post('/books/book',service.addBook);
+//编辑图书时根据id查询相应信息
+router.get('/books/book/:id',service.getBookById);
+//提交编辑的数据
+router.put('/books/book',service.editBook);
+//删除图书信息
+router.delete('/books/book/:id',service.deleteBook);
+//查询图书信息
+router.get('/books/book',service.searchBook);
 
-//具体操作
-router.get('/toAddBook',service.toAddBook);
-router.post('/addBook',service.addBook);
-router.get('/toEditBook',service.toEditBook);
-router.post('/editBook',service.editBook);
-router.get('/deleteBook',service.deleteBook);
-router.get('/toSearchBook',service.toSearchBook);
-router.get('/searchBook',service.searchBook);
 
 module.exports = router;
