@@ -34,7 +34,7 @@ exports.getBookById = (req,res)=>{
   let data = [id];
   db.base(sql,data,(result)=>{
     if(result.length != 0){
-      console.log(result);
+      //console.log(result);
       res.json(result[0]);
     }
   })
@@ -60,7 +60,7 @@ exports.deleteBook = (req,res)=>{
   let sql = 'delete from book where id=?';
   let data = [id];
   db.base(sql,data,(result)=>{
-    console.log(result);
+    //console.log(result);
     if(result.affectedRows == 1){
       res.json({flag : 1});
       //console.log(res)
