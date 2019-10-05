@@ -61,11 +61,9 @@ $(function(){
             url : '/books/book/' + id,
             dataType : 'json',
             success : function(data){
-                initList();
-            },
-            error : function() {
-                initList();
-               console.log('请求失败');
+                if(data.flag == '1'){
+                    initList();
+                }
             },
         })
     }
@@ -96,6 +94,7 @@ $(function(){
                     }
                 })
             })
+            initList();
           }
         })
     }
