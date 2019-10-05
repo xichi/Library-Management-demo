@@ -29,11 +29,11 @@ exports.addBook = (req,res)=>{
 
 //编辑图书时id查询
 exports.getBookById = (req,res)=>{
-  let info = req.params.id;
+  let id = req.params.id;
   let sql = 'select * from book where id=?';
   let data = [id];
   db.base(sql,data,(result)=>{
-    if(result.affectedRows == 1){
+    if(result.length != 0){
       res.json(result[0]);
     }
   })
@@ -56,13 +56,13 @@ exports.editBook = (req,res)=>{
 //删除图书
 exports.deleteBook = (req,res)=>{
   let id = req.params.id;
-  let sql = 'delete form book where id=?';
+  let sql = 'delete from book where id=?';
   let data = [id];
   db.base(sql,data,(result)=>{
     if(result.affectedRows == 1){
       res.json(result[0]);
-    }
-  })
+    } 
+  }) 
 }
 
 //查询图书

@@ -5,7 +5,7 @@
 node初次尝试，简单的练手项目（实现基于:bulb:数据库的增删改查）
 
 前端：express + bootstrap + art-template  
-数据库：phpStudy + Navicat Premium
+数据库：mysql + phpStudy + Navicat Premium
 
 ## 1.前端渲染与后端渲染
 
@@ -27,7 +27,8 @@ node初次尝试，简单的练手项目（实现基于:bulb:数据库的增删�
 
 ## 2.常用MySQL语句
 
-增删改查常用MySQL语句:
+使用数据库，就不得不提到老少咸宜的MySQL了~~  
+以下增删改查常用MySQL语句:
 
 >
 >增：insert
@@ -45,24 +46,45 @@ node初次尝试，简单的练手项目（实现基于:bulb:数据库的增删�
 >增：
 >
 >```mysql
->insert into employee(id,name) values(6,'张三');
+>insert into book set ?
 >```
 >
 >删：
 >
 >```mysql
->delete from employee where job='ccc';
+>delete from book where id=?
 >```
 >
 >改：
 >
 >```mysql
->update employee set salary = 4000,job='ccc' where name='张三';
+>update book set name=?,author=?,category=?,description=? where id=?
 >```
 >
 >查：
 >
 >```mysql
->select * from student where name='张三';
+>select * from book where name='张三流浪记';
 >```
 >
+
+## 3.ajax请求
+
+### (1).常见四种请求方式
+
++ GET  
+  GET方法请求一个指定资源的表示形式. 使用GET的请求应该只被用于获取数据.
++ POST  
+  POST方法用于将实体提交到指定的资源，通常导致在服务器上的状态变化或副作用.
++ PUT  
+  PUT方法用请求有效载荷替换目标资源的所有当前表示。
++ DELETE  
+  DELETE方法删除指定的资源。
+
+### (2).GET和POST的区别
+
+与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。然而，在以下情况中，请使用 POST 请求：
+
++ 无法使用缓存文件（更新服务器上的文件或数据库）
++ 向服务器发送大量数据（POST 没有数据量限制）
++ 发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠

@@ -17,6 +17,6 @@ app.use(bodyParser.json());
 app.use(router);
 
 //启动服务器功能
-app.listen(2100,()=>{
+app.listen(3000,()=>{
     console.log('running');
 })
