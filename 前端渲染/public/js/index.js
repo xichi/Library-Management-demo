@@ -27,10 +27,10 @@ $(function(){
                    //删除操作 
                    td.find('button:eq(1)').click(function(){   
                         deleteBook(id);
+                   });
                    //重置表单
-                   $('#form-save').get(0).reset();
-                   $('#form-save').find('input[type=hidden]').val('');
-                });
+                    $('#form-save').get(0).reset();
+                    $('#form-save').find('input[type=hidden]').val('');
                 });
             }
         })
@@ -84,7 +84,7 @@ $(function(){
             $('#btn-save').unbind('click').click(function(){
                 $.ajax({
                     type : 'put',
-                    url : '/books/book/',
+                    url : '/books/book',
                     data : form.serialize(),
                     dataType : 'json',
                     success : function(data){
@@ -94,7 +94,9 @@ $(function(){
                     }
                 })
             })
-            initList();
+            $('.close').click(function(){
+                initList();
+            })
           }
         })
     }
