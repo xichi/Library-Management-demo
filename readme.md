@@ -24,6 +24,8 @@ node初次尝试，简单的练手项目（实现基于:bulb:数据库的增删�
    后端返回JSON数据，前端利用预先写的html模板，循环读取JSON数据，拼接字符串（es6的模板字符串特性大大减少了拼接字符串的的成本），并插入页面。
 
    前端代码量变大，以前在后台处理的交互逻辑交给了前端处理。而且现在呈现前后端分离趋势:dizzy:，比较推荐这种方式。
+4. 服务器主动发送请求调用接口：  
+   当前情况下，后台接口都放在一台服务器下。但在真实场景中，接口可能会部署到不同的服务器当中。我们可以写一些脚本来做接口的调试工作。
 
 <br/>
 <br/>
@@ -119,7 +121,7 @@ node初次尝试，简单的练手项目（实现基于:bulb:数据库的增删�
   header：'application/octet-stream'
   body：<Buffer 68 65 6c 6c 6f 77 6f 72 6c 64>
 
-  res.send(["hello","word"]);
+  **res**.send(["hello","word"]);
   header： 'content-type': 'application/json'
   body：[ 'hello', 'word' ]
   ```
