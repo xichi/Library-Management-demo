@@ -7,6 +7,8 @@ node初次尝试，简单的练手项目（实现基于:bulb:数据库的增删�
 前端：express + bootstrap + art-template  
 数据库：mysql + phpStudy + Navicat Premium
 
+demo: [图书管理系统](http://api.xichi.xyz/demo)
+
 ## 1.前端渲染与后端渲染
 
 在学习node的时候，使用了三种方式渲染数据：
